@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'style.css' %}"> 
+        <title>Document</title>
+        <style>
+        body{
+        text-align: center;
+            }
+    .backgroud{
+        position: absolute;
+        display: inline-block;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: -1;
+        background-color: rgb(223,223,221);
+                background-image: url("{% static 'images/first.png' %}");
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: auto 50%;
+                background-position-x: center;
+                background-position-y: bottom;
+    }
+        </style>
+</head>
+<body>
+    
+</body>
+</html>

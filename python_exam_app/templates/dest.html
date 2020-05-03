@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+  body {
+    font-family: 'Josefin Sans', sans-serif;
+  }
+  .my-center{
+    text-align: center;
+  }
+  .left{
+    float:left;
+    text-decoration: none;
+  }
+  .right{
+    text-decoration: none;
+    float: right;
+  }
+  .my-center{
+        text-align: center;
+  }
+  .background{
+    position: absolute;
+    display: inline-block;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-image: url("{% static 'images/editdest2.png' %}");
+    background-size:cover;
+    background-position-x: center;
+    background-position-y: bottom;
+  }
+</style>
+</head>
+<body>
+    <div class="background"></div>
+    <a class= 'dim right dark-pink f4' href="/logOut">Log Out</a>
+    <a class= 'dim left dark-pink f4' href="/success">Home</a>
+    <main class="pa4 black-80">
+        <fieldset  class="ba b--transparent ph0 mh0">
+          <legend class="f2 fw6 ph0 mh0">{{tripInfo.destination}}</legend>
+          <div class="mt3">
+            <label class="f3 fw6 ph0 mh0">Planned By:</label>
+            <p class="f4 lh-copy measure mt2 dark-pink dib">{{loggedin.name}}</p>
+          </div>
+          <div class="mt3">
+            <label class="f3 fw6 ph0 mh0">Description:</label>
+            <p class="f4 lh-copy measure mt2 dark-pink dib">{{tripInfo.description}}</p>
+          </div>
+          <div class="mt3">
+            <label class="f3 fw6 ph0 mh0">Date From:</label>
+            <p class="f4 lh-copy measure mt2 dark-pink dib">{{tripInfo.DateFrom}}</p>
+          </div>
+          <div class="mt3">
+            <label class="f3 fw6 ph0 mh0">Date To:</label>
+            <p class="f4 lh-copy measure mt2 dark-pink dib">{{tripInfo.DateTo}}</p>
+          </div>
+          <div class="mt3">
+            <label class="f3 fw6 ph0 mh0">Other users joining the trip:</label>
+            {% for p in planners %}
+            <p class="f4 lh-copy measure mt2 dark-pink db">{{p.name}}</p>
+            {% endfor %}
+          </div>
+        </fieldset>
+    </main>
+</body>
+</html>

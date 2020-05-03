@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+    .center{
+        text-align: center;
+        }
+    .background{
+    position:fixed ;
+    display: inline-block;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-image: url("{% static 'images/editdest1.png' %}");
+    background-size:cover;
+    background-position-x: center;
+    background-position-y: bottom;
+    }
+    body{
+        font-family: 'Josefin Sans', sans-serif;
+    }
+    a{
+        text-decoration: none;
+    }
+    .mystyle {
+        background-color: rgba(255,255,255,0.2);
+    }
+
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <a class= 'dim dark-pink pa3 f4' href="">Main page</a>
+        <!-- form validation -->
+        {% if messages %}
+        {% for message in messages %}
+        <P style='color:#D5008F'> {{message}}</P>
+        {% endfor %}
+        {% endif %}
+        <!-- end of form validation -->
+        <!-- index page -->
+        <article class="br2  dark-gray b--black-10 mv5 w-100 w-50-m w-25-l mw6 center">
+            <h1 class='center'>let's make a plan for your trip!</h1>
+            <div class="center">
+                <input onclick="loginClick()" class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f4 dib br2 br--right" type="button" value="Sign in">
+                <input onclick="singinClick()" class="b  ph3 pv2 input-reset ba b--black bg-transparent grow pointer f4 dib br2 br--left" type="button" value="Sign up">
+
+            </div>
+        </article>
+        <!-- end of start page -->
+        <!-- sign in page -->
+        <article id="login-section" style="display: none;" class="br3 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw7 center shadow-3 mystyle">
+        <main class="pa4 black-80">
+            <form class="measure" action="/login" method="post">
+                {% csrf_token %} 
+            <fieldset id="sign_up" class="ba b--transparent ph0 mh0">
+                <legend class="f3 fw6 ph0 mh0 center">Sign In</legend>
+                <div class="mt3">
+                <label class="db fw6 lh-copy f5 tc" for="uname">Username</label>
+                <input class="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="text" name="uname" id="">
+                </div>
+                <div class="mv3">
+                <label class="db fw6 lh-copy f5 tc" for="pw">Password</label>
+                <input class="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="password" name="pw"  id="password">
+                </div>
+            </fieldset>
+            <div class="my-center">
+                <input class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f4 dib " type="submit" value="Sign In">
+            </div>
+            <div class="lh-copy mt3">
+            </div>
+            </form>
+        </main>
+    </article> 
+    <!-- end of sign in page -->
+    <!-- start of register form  -->
+    <article id="register-section"  style="display: none;" class="br3 ba dark-gray b--black-10  mt4 mb1 w-100 w-50-m w-25-l mw7 center shadow-3 mystyle">
+        <main class="pa3 black-80">
+            <form class="measure" action="/register" method="post">
+                {% csrf_token %} 
+            <fieldset id="sign_up" class="ba b--transparent ph0 mh0">
+                <legend class="f3 fw6 ph0 mh0 center">Register</legend>
+                <div class="mt3">
+                    <label class="db fw6 lh-copy f5 tc" for="fname">Name</label>
+                    <input class="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="text" name="fname"  id="">
+                </div>
+                    <div class="mt3">
+                    <label class="db fw6 lh-copy f5 tc" for="uname">Username</label>
+                    <input class="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="text" name="uname"  id="">
+                </div>
+                    <div class="mv3">
+                    <label class="db fw6 lh-copy f5 tc" for="pw">Password</label>
+                    <input class="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="password" name="pw"  id="password">
+                <div class="mv3">
+                    <label class="db fw6 lh-copy f5 tc" for="cpw"> Confirm Password</label>
+                    <input class="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="password" name="cpw"  id="password">
+                </div>
+            </fieldset>
+            <div class="my-center">
+                <input class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f4 dib " type="submit" value="Sign Up">
+                
+            </div>
+            <div class="lh-copy mt3">
+            </div>
+            </form>
+        </main>
+    </article>  
+    <!-- end of register form  -->
+    <script>
+        var register = document.getElementById('register-section');
+        var login = document.getElementById('login-section');
+
+        // register.style.display='none';
+        // login.style.display='none';
+
+        function loginClick(){
+            register.style.display='none';
+            login.style.display='block';
+            
+        }
+        function singinClick(){
+            register.style.display='block';
+            login.style.display='none';
+        }
+    </script>
+</body>
+</html> 

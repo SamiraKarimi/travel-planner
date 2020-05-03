@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+  <title>Document</title>
+  <style>
+     body{
+        font-family: 'Josefin Sans', sans-serif;
+    }
+    div h2 {
+      display: inline-block;
+      padding-left: 1rem;
+    }
+    .right{
+      float:right;
+      padding-right: 1rem;
+      /* position:fixed; */
+    }
+    a{
+      text-decoration: none;
+    }
+    .background{
+    position:fixed ;
+    display: inline-block;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-image: url("{% static 'images/home2.png' %}");
+    background-size:cover;
+    background-position-x: center;
+    background-position-y: bottom;
+    /* opacity: 70%; */
+    }
+  </style>
+</head>
+<body>
+  <div class="background"></div>
+    <div class='pt2 pl3'>
+      <a class= 'dim  dark-blue f4 fixed right-1' href="/logOut">Log Out</a>
+      <legend class="f2 fw6 ph0 mh0 ma3">Hello {{logedinUser.name}}!</legend>
+  </div>
+  <div class="pa4">
+    <div class="overflow-auto ">
+      <h2 class="f2 fw6 ph0 mh0">Your Trip Schedules</h2>
+      <table class="f5 w-100 mw8 center" cellspacing="0">
+        <thead>
+          <tr>
+            <th class="fw6 bb b--black-20 tl pb3 pr3 f4">Destination</th>
+            <th class="fw6 bb b--black-20 tl pb3 pr3 f4">Travel Start Date</th>
+            <th class="fw6 bb b--black-20 tl pb3 pr3 f4">Travel End Date</th>
+            <th class="fw6 bb b--black-20 tl pb3 pr3 f4">Plan</th>
+          </tr>
+        </thead>
+        <tbody class="lh-copy">
+          {% for tripobj in myTrips %}
+          <tr>
+            <td class="pv3 pr3 bb b--black-20 f4"><a href="/tripInfo/{{tripobj.id}}" class="dim">{{tripobj.destination}}</a></td>
+            <td class="pv3 pr3 bb b--black-20 f4">{{tripobj.DateFrom}}</td>
+            <td class="pv3 pr3 bb b--black-20 f4">{{tripobj.DateTo}}</td>
+            <td class="pv3 pr3 bb b--black-20 f4">{{tripobj.description}}</td>
+          </tr>
+          {% endfor %}  
+        </tbody>
+      </table>
+      </div>
+    <div class="pa4">
+      <div class="overflow-auto">
+        <h2>Other User's Travel Plans</h2> 
+        <table class="f5 w-100 mw8 center" cellspacing="0">
+          <thead>
+            <tr>
+              <th class="fw6 bb b--black-20 tl pb3 pr3 f4">Name</th>
+              <th class="fw6 bb b--black-20 tl pb3 pr3 f4">Destination</th>
+              <th class="fw6 bb b--black-20 tl pb3 pr3 f4">Travel Start Date</th>
+              <th class="fw6 bb b--black-20 tl pb3 pr3 f4">Travel End Date</th>
+              <th class="fw6 bb b--black-20 tl pb3 pr3 f4">Do you want to join?</th>
+            </tr>
+          </thead>
+          <tbody class="lh-copy">
+            {% for nottripobj in notmyTrips %}
+            <tr>
+              <td class="pv3 pr3 bb b--black-20 f4">{{nottripobj.uploader.name}}</td>
+              <td class="pv3 pr3 bb b--black-20 f4"><a href="/tripInfo/{{nottripobj.id}}" class="dim">{{nottripobj.destination}}</a></td>
+              <td class="pv3 pr3 bb b--black-20 f4">{{nottripobj.DateFrom}}</td>
+              <td class="pv3 pr3 bb b--black-20 f4">{{nottripobj.DateTo}}</td>
+              <td class="pv3 pr3 bb b--black-20 f4"><a href="/join/{{nottripobj.id}}" class="dim">Join</a></td>
+            </tr>
+            {% endfor %}  
+          </tbody>
+      </table>
+    </div>
+    <a class= 'dim white f4 fixed bottom-1 ' href="/trip/add">add Travel Plan</a>
+  </div>
+  </body>
+</div>
+</html>

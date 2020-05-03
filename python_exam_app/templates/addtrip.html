@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+    body{
+        font-family: 'Josefin Sans', sans-serif;
+    }
+    .my-center{
+        text-align: center;
+        }
+    .background{
+    position: absolute;
+    display: inline-block;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-image: url("{% static 'images/edit3form.png' %}");
+    background-size:cover;
+    background-position-x: center;
+    background-position-y: bottom;
+    }
+    a{
+        text-decoration: none;
+    }
+    .mystyle {
+        background-color: rgba(255,255,255,0.1);
+    }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="pb3">
+        <a class= 'dim fr white f4' href="/logOut">Log Out</a>
+        <a class= 'dim fl white f4 ' href="/success">Home</a>
+    </div>
+    {% if messages%}
+    {% for message in messages %}
+    <p style="color:#D5008F">{{message}}</p>
+    {% endfor %}
+    {% endif %}
+    <article class="br2 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw7 center shadow-4 mystyle">
+        <main class="pa4 black-80">
+            <form class="measure" action="/createTrip" method="post">
+                {% csrf_token %}
+            <fieldset id="sign_up" class="ba b--transparent ph0 mh0">
+                <legend class="f2 fw6 ph0 mh0 my-center">let's add a trip</legend>
+                <div class="mt3">
+                    <label class="db fw6 lh-copy f4 tc" for="dest">Destination</label>
+                    <input class="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="text" name="dest"  id="">
+                </div>
+            <div class="mt3">
+                <label for="" class="db fw6 lh-copy f4 tc">Description</label>
+                <textarea id="comment" name="descrip" class="db border-box hover-black w-100 measure ba b--black-20 pa2 br2 mb2" aria-describedby="comment-desc"></textarea>
+            </div>
+            <div class="mt3">
+                    <label class="db fw6 lh-copy f4 tc" for="dateFrom">Travel Date From</label>
+                    <input class="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="date" name="dateFrom"  id="">
+                </div>
+                <div class="mt3">
+                    <label class="db fw6 lh-copy f4 tc" for="dateTo">Travel Date to</label>
+                    <input class="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="date" name="dateTo"  id="">
+                </div>
+            </fieldset>
+                <div class="my-center">
+                <input class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f4 dib" type="submit" value="Add">
+                </div> 
+            </form>
+        </main>        
+    </article>
+</body>
+</html>

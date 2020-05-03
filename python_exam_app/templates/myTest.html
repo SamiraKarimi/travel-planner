@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        .my-center{
+            text-align: center;
+        }
+        body{
+        font-family: 'Josefin Sans', sans-serif;
+    }
+    </style>
+</head>
+<body>
+    {% if messages %}
+      {% for message in messages %}
+      <P style='color:red'> {{message}}</P>
+      {% endfor %}
+      {% endif %}
+            <article class="br3   mv4 w-100 w-50-m w-25-l mw6 center">
+                <main class="pa4 black-80">
+                    <form class="measure" action="/login" method="post">
+                        {% csrf_token %} 
+                    <fieldset id="sign_up" class="ba b--transparent ph0 mh0">
+                        <legend class="f4 fw6 ph0 mh0 center">Sign In</legend>
+                        <div class="mt3">
+                        <label class="db fw6 lh-copy f6 tc" for="uname">Username</label>
+                        <input class="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="text" name="uname" id="">
+                        </div>
+                        <div class="mv3">
+                        <label class="db fw6 lh-copy f6 tc" for="pw">Password</label>
+                        <input class="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="password" name="pw"  id="password">
+                        </div>
+                    </fieldset>
+                    <div class="my-center">
+                        <input class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib " type="submit" value="Sign In">
+                    </div>
+                    <div class="lh-copy mt3">
+                    </div>
+                    </form>
+                </main>
+            </article> 
+            <article class="br3  mv4 w-100 w-50-m w-25-l mw6 center">
+                <main class="pa4 black-80">
+                    <form class="measure" action="/register" method="post">
+                        {% csrf_token %} 
+                    <fieldset id="sign_up" class="ba b--transparent ph0 mh0">
+                        <legend class="f4 fw6 ph0 mh0 center">Register</legend>
+                        <div class="mt3">
+                            <label class="db fw6 lh-copy f6 tc" for="fname">Name</label>
+                            <input class="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="text" name="fname"  id="">
+                        </div>
+                            <div class="mt3">
+                            <label class="db fw6 lh-copy f6 tc" for="uname">Username</label>
+                            <input class="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="text" name="uname"  id="">
+                        </div>
+                            <div class="mv3">
+                            <label class="db fw6 lh-copy f6 tc" for="pw">Password</label>
+                            <input class="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="password" name="pw"  id="password">
+                        <div class="mv3">
+                            <label class="db fw6 lh-copy f6 tc" for="cpw"> Confirm Password</label>
+                            <input class="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="password" name="cpw"  id="password">
+                        </div>
+                    </fieldset>
+                    <div class="my-center">
+                        <input class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib " type="submit" value="Sign Up">
+                    </div>
+                    <div class="lh-copy mt3">
+                    </div>
+                    </form>
+                </main>
+            </article>  
+        </div>
+    </div>   
+</body>
+</html>   
+<!-- add trip original -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+</head>
+<body>
+    <h3>Add a Trip </h3>
+    <p><a href="/logOut">Log Out</a>|<a href="/success">Home</a></p>
+    {% if messages%}
+    {% for message in messages %}
+    <p style="color:red">{{message}}</p>
+    {% endfor %}
+    {% endif %}
+    <form action="/createTrip" method="post">
+        {% csrf_token %} 
+        <p>Destination:<input type="text" name="dest" id=""></p>
+        <p>Description:<input type="text" name="descrip" id=""></p>
+        <p>Travel Date From<input type="date" name="dateFrom" id=""></p>
+        <p>Travel Date to:<input type="date" name="dateTo" id=""></p>
+        <p><input type="submit" value="Add"></p>
+    </form>
+</body>
+</html> -->
+<!-- --------------------------- -->
